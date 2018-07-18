@@ -52,75 +52,9 @@ h1 {
     }
 }
 
-.book-list {
-    padding: 20px 0;
-    margin: 0;
-}
-
-.book-list-item {
-    list-style: none;
-    border: 1px solid lighten($brand-primary,50%);
-    padding: 10px;
-    margin-bottom: 15px;
-    cursor: pointer;
-
-    &:hover {
-        border: 1px solid $brand-primary;
-    }
-}
-
-.book-list-item-title {
-    display: block;
-    font-weight: 400;
-    font-size: 1.1em;
-    border-bottom: 1px solid lighten($brand-primary, 70%);
-    padding-bottom: 4px;
-    margin-bottom: 4px;
-    line-height: 1.2em;
-    text-decoration: none;
-
-    &:hover {
-        text-decoration: none;
-    }
-}
-
-.book-list-item-author, .book-list-item-publication-year, .book-list-item-publication-place, .book-list-item-subject {
-    font-size: 0.9em;
-}
-
-.book-list-item-label {
-    font-weight: 400;
-}
-
-.filters {
-    padding: 5px 0;
-}
-
-.filter-tags {
-    .btn {
-        margin: 10px 10px 0 0;
-    }
-}
-
 .no-results {
     text-align: center;
     padding: 20px;
     border: 1px dashed $brand-primary;
     margin: 20px 0;
-}
-
-.info-section {
-    padding: 15px 0;
-    border-top: 1px solid $brand-primary;
-    border-bottom: 1px solid $brand-primary;
-    font-size: 0.8em;
-    margin: 15px 0;
-}
-
-@media (max-width: $screen-sm-min) {
-    .filters {
-        .form-control, .Select-control {
-            margin-bottom: 10px;
-        }
-    }
 }
