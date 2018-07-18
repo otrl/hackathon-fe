@@ -1,0 +1,40 @@
+@mixin loader($size, $circleColor, $spinnerColor) {
+    display: inline-block;
+    border-radius: 50%;
+    width: $size;
+    height: $size;
+
+    &:after {
+        border-radius: 50%;
+        width: $size;
+        height: $size;
+    }
+
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 1.1em solid $circleColor;
+    border-right: 1.1em solid $circleColor;
+    border-bottom: 1.1em solid $circleColor;
+    border-left: 1.1em solid $spinnerColor;
+    transform: translateZ(0);
+    animation: load8 1.1s infinite linear;
+}
+
+.loader-primary {
+    @include loader(1em, lighten($brand-primary, 50%), $brand-primary);
+}
+
+.loader-primary-lg {
+    @include loader(150px, lighten($brand-primary, 50%), $brand-primary);
+    margin: 20px 0;
+}
+
+@keyframes load8 {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
