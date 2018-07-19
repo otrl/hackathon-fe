@@ -7,32 +7,35 @@ import {Helmet} from 'react-helmet';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import TestState from '../../records/TestState';
 import UiState from '../../records/UiState';
 
-import TestActions from "../../actions/TestActions";
+import WorkHomeCatchmentActions from "../../actions/WorkHomeCatchmentActions";
 import Header from '../Header';
 import Footer from '../Footer';
-import LineChart from '../LineChart';
+// import LineChart from '../LineChart';
+import GMaps from '../GMaps';
+import WorkHomeCatchmentState from "../../records/WorkHomeCatchmentState";
 
 class Home extends React.PureComponent {
     static propTypes = {
         ui: PropTypes.instanceOf(UiState).isRequired,
-        testState: PropTypes.instanceOf(TestState).isRequired,
-        getTest: PropTypes.func.isRequired
+        catchmentsState: PropTypes.instanceOf(WorkHomeCatchmentState).isRequired,
+        search: PropTypes.func.isRequired
+    };
+
+    state = {
+        postcode: "E1",
+        type: "work"
     };
 
     componentDidMount () {
-        this.props.getTest();
+        const { postcode, type } = this.state;
+        this.props.search(postcode,type);
     }
 
-    // componentWillReceiveProps (newProps) {
-    //
-    // }
-
     render () {
-        const {testState, ui} = this.props;
-        console.log('testState', testState);
+        const {catchmentsState, ui} = this.props;
+        console.log('catchments', catchmentsState);
         return (
             <React.Fragment>
                 {ui.isLoading() && <div className="page-loader"/>}
@@ -51,7 +54,8 @@ class Home extends React.PureComponent {
                             Content
                             <br/><br/>
 
-                            <LineChart/>
+                            {/*<LineChart/>*/}
+                            <GMaps data={catchmentsState.catchments} origin={catchmentsState.originPoint} isMarkerShown />
                         </Col>
                     </Row>
 
@@ -68,14 +72,14 @@ class Home extends React.PureComponent {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTest: bindActionCreators(TestActions.get, dispatch)
+        search: bindActionCreators(WorkHomeCatchmentActions.search, dispatch)
     };
 };
 
 const mapStateToProps = (state) => {
     return {
         ui: state.ui,
-        testState: state.test,
+        catchmentsState: state.catchments,
     };
 };
 

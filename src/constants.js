@@ -6,6 +6,12 @@ export const TestActionTypes = keyMirror({
     GET_TEST_FAIL: null
 });
 
+export const WorkHomeCatchmentActionTypes = keyMirror({
+    GET_WORK_HOME_CATCHMENT_START: null,
+    GET_WORK_HOME_CATCHMENT_SUCCESS: null,
+    GET_WORK_HOME_CATCHMENT_FAIL: null
+});
+
 export const UiActionTypes = keyMirror({
     LOADING_START: null,
     LOADING_END: null
