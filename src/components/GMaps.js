@@ -9,18 +9,30 @@ import TransitLayer from './TransitLayer'
 import config from '../config';
 
 const GMaps = (props) => {
-    const heatMapData = props.data.map(datum => {
-        return {
-            postcode: datum.postcode,
-            location: new google.maps.LatLng(datum.latitude, datum.longitude),
-            weight: datum.users
-        }
-    }).toArray();
+    let heatMapData = [];
+
+    if (props.catchmentData) {
+        heatMapData = props.catchmentData.map(datum => {
+            return {
+                postcode: datum.postcode,
+                location: new google.maps.LatLng(datum.latitude, datum.longitude),
+                weight: datum.users
+            }
+        }).toArray();
+    } else if (props.odData) {
+        heatMapData = props.odData.map(datum => {
+            return {
+                location: new google.maps.LatLng(datum.latitude, datum.longitude),
+                weight: datum.weight
+            }
+        }).toArray();
+    }
+
 
     return (
         <GoogleMap
             defaultZoom={10}
-            defaultCenter={{ lat: 51.509865, lng: -0.118092 }}
+            center={props.origin ? new google.maps.LatLng(props.origin.latitude, props.origin.longitude) : { lat: 51.509865, lng: -0.118092 }}
             layerTypes={['TransitLayer']}
             options={{
                 styles: [
