@@ -37,10 +37,34 @@ const GMaps = (props) => {
             options={{
                 styles: [
                     {
-                        featureType: "all",
+                        featureType: "road",
                         elementType: "all",
                         stylers: [
                             { saturation: -100 } // <-- THIS
+                        ]
+                    },{
+                        featureType: "transit",
+                        elementType: "all",
+                        stylers: [
+                            { saturation: -50 }
+                        ]
+                    },{
+                        featureType: "landscape",
+                        elementType: "all",
+                        stylers: [
+                            { saturation: -100 }
+                        ]
+                    },{
+                        featureType: "poi",
+                        elementType: "all",
+                        stylers: [
+                            { saturation: -100 }
+                        ]
+                    },{
+                        featureType: "water",
+                        elementType: "all",
+                        stylers: [
+                            { saturation: -80 }
                         ]
                     }
                 ],
