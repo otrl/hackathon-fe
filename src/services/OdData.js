@@ -5,7 +5,7 @@ import OriginPoint from '../records/OriginPoint';
 import OdPlace from "../records/OdPlace";
 
 const OdData = {
-    async search(place = 'E1', type = 'origin', purpose = 'all', timeZone = 'all') {
+    async search(place = 'Adun', type = 'origin', purpose = 'all', timeZone = 'all', mode = 'all') {
         const apiClient = Api.getApiClient();
         try {
             const results = await apiClient.post(`/od-data`, {
@@ -13,6 +13,7 @@ const OdData = {
                 type,
                 purpose,
                 timeZone,
+                mode
             });
             return {
                 data: resolveAll(results.data.data).as(Record),

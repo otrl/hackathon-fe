@@ -13,6 +13,7 @@ class OdDataSearchForm extends React.PureComponent {
         type: PropTypes.string,
         purpose: PropTypes.string,
         timeZone: PropTypes.string,
+        mode: PropTypes.string,
         places: PropTypes.instanceOf(List),
         handleSubmit: PropTypes.func.isRequired
     };
@@ -21,6 +22,7 @@ class OdDataSearchForm extends React.PureComponent {
         place: this.props.place,
         type: this.props.type,
         purpose: this.props.purpose,
+        mode: this.props.mode,
         timeZone: this.props.timeZone
     };
 
@@ -35,20 +37,20 @@ class OdDataSearchForm extends React.PureComponent {
     onFormSubmit = (e) => {
         e.preventDefault();
         if (this.isValid()) {
-            const {place, type, purpose, timeZone} = this.state;
+            const {place, type, purpose, timeZone, mode} = this.state;
 
-            this.props.handleSubmit(place, type, purpose, timeZone);
+            this.props.handleSubmit(place, type, purpose, timeZone, mode);
         }
     };
 
     isValid () {
-        const {place, type, purpose, timeZone} = this.state;
+        const {place, type, purpose, timeZone, mode} = this.state;
 
-        return place && type && purpose && timeZone;
+        return place && type && purpose && timeZone && mode;
     }
 
     render () {
-        const {place, type, purpose, timeZone} = this.state;
+        const {place, type, purpose, timeZone, mode} = this.state;
         return (
             <form onSubmit={this.onFormSubmit}>
                 <Row>
@@ -69,7 +71,7 @@ class OdDataSearchForm extends React.PureComponent {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12} sm={5}>
+                    <Col xs={12} sm={3}>
                         <FormGroup controlId="timeZone">
                             <FormControl value={purpose} componentClass="select" placeholder="select" onChange={this.onFieldChange("purpose")}>
                                 <option value="all">All</option>
@@ -81,7 +83,7 @@ class OdDataSearchForm extends React.PureComponent {
                             </FormControl>
                         </FormGroup>
                     </Col>
-                    <Col xs={12} sm={4}>
+                    <Col xs={12} sm={3}>
                         <FormGroup controlId="timeZone">
                             <FormControl value={timeZone} componentClass="select" placeholder="select" onChange={this.onFieldChange("timeZone")}>
                                 <option value="all">All</option>
@@ -89,6 +91,15 @@ class OdDataSearchForm extends React.PureComponent {
                                 <option value="1000-1600">10:00-16:00</option>
                                 <option value="1600-1900">16:00-19:00</option>
                                 <option value="1900-0700">19:00-07:00</option>
+                            </FormControl>
+                        </FormGroup>
+                    </Col>
+                    <Col xs={12} sm={3}>
+                        <FormGroup controlId="mode">
+                            <FormControl value={mode} componentClass="select" placeholder="select" onChange={this.onFieldChange("mode")}>
+                                <option value="all">All</option>
+                                <option value="rail">Rail</option>
+                                <option value="road">Road</option>
                             </FormControl>
                         </FormGroup>
                     </Col>

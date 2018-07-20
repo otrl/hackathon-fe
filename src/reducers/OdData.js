@@ -11,7 +11,8 @@ export default function WorkHomeCatchment(state = new OdDataState(), action) {
                 place: action.postcode,
                 type: action.directionType,
                 purpose: action.purpose,
-                timeZone: action.timeZone
+                timeZone: action.timeZone,
+                mode: action.mode
             });
             break;
         }

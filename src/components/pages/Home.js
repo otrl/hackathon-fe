@@ -37,12 +37,12 @@ class Home extends React.PureComponent {
         const {
             catchmentsState,
             workHomeCatchmentsSearch,
-            odDataState: {place, type, purpose, timeZone},
+            odDataState: {place, type, purpose, timeZone, mode},
             odDataSearch,
             odDataPlacesSearch
         } = this.props;
         workHomeCatchmentsSearch(catchmentsState.postcode, catchmentsState.type);
-        // odDataSearch(place, type, purpose, timeZone);
+        odDataSearch(place, type, purpose, timeZone, mode);
         odDataPlacesSearch();
     }
 
@@ -50,8 +50,8 @@ class Home extends React.PureComponent {
         this.props.workHomeCatchmentsSearch(postcode,type);
     };
 
-    handleOdDataFormSubmit = (place, type, purpose, timeZone) => {
-        this.props.odDataSearch(place, type, purpose, timeZone);
+    handleOdDataFormSubmit = (place, type, purpose, timeZone, mode) => {
+        this.props.odDataSearch(place, type, purpose, timeZone, mode);
     };
 
     render () {
@@ -77,6 +77,7 @@ class Home extends React.PureComponent {
                                     <br/>
                                     <OdDataSearchForm handleSubmit={this.handleOdDataFormSubmit}
                                                       type={odDataState.type}
+                                                      mode={odDataState.mode}
                                                       place={odDataState.place}
                                                       places={odDataState.places}
                                                       purpose={odDataState.purpose}

@@ -12,6 +12,7 @@ const defaults = {
     type: 'destination',
     purpose: 'all',
     timeZone: 'all',
+    mode: 'all',
     places: new List(),
     data: new List(),
     originPoint: null
@@ -26,6 +27,7 @@ class OdDataState extends record(defaults) {
             type: resolve.with(String),
             purpose: resolve.with(String),
             timeZone: resolve.with(String),
+            mode: resolve.with(String),
             data: resolveAll.as(OdData),
             originPoint: resolve.as(OriginPoint)
         });
