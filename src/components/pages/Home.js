@@ -9,12 +9,14 @@ import {connect} from 'react-redux';
 
 import UiState from '../../records/UiState';
 
-import WorkHomeCatchmentActions from "../../actions/WorkHomeCatchmentActions";
+import WorkHomeCatchmentActions from '../../actions/WorkHomeCatchmentActions';
 import Header from '../Header';
 import Footer from '../Footer';
 // import LineChart from '../LineChart';
 import GMaps from '../GMaps';
-import WorkHomeCatchmentState from "../../records/WorkHomeCatchmentState";
+import WorkHomeCatchmentState from '../../records/WorkHomeCatchmentState';
+
+import WorkHomeCatchmentSearchForm from './../WorkHomeCatchmentSearchForm';
 
 class Home extends React.PureComponent {
     static propTypes = {
@@ -23,19 +25,17 @@ class Home extends React.PureComponent {
         search: PropTypes.func.isRequired
     };
 
-    state = {
-        postcode: "E1",
-        type: "work"
-    };
-
     componentDidMount () {
-        const { postcode, type } = this.state;
+        const { postcode, type } = this.props.catchmentsState;
         this.props.search(postcode,type);
     }
 
+    handleFormSubmit = (postcode, type) => {
+        this.props.search(postcode,type);
+    };
+
     render () {
         const {catchmentsState, ui} = this.props;
-        console.log('catchments', catchmentsState);
         return (
             <React.Fragment>
                 {ui.isLoading() && <div className="page-loader"/>}
@@ -51,10 +51,11 @@ class Home extends React.PureComponent {
                     </Row>
                     <Row>
                         <Col xs={12}>
-                            Content
                             <br/><br/>
-
-                            {/*<LineChart/>*/}
+                            <WorkHomeCatchmentSearchForm postcode={catchmentsState.postcode}
+                                                         type={catchmentsState.type}
+                                                         handleSubmit={this.handleFormSubmit} />
+                            <br/>
                             <GMaps data={catchmentsState.catchments} origin={catchmentsState.originPoint} isMarkerShown />
                         </Col>
                     </Row>

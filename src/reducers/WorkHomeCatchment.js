@@ -7,7 +7,9 @@ export default function WorkHomeCatchment(state = new WorkHomeCatchmentState(), 
         case WorkHomeCatchmentActionTypes.GET_WORK_HOME_CATCHMENT_START: {
             state = state.merge({
                 loading: true,
-                failed: false
+                failed: false,
+                postcode: action.postcode,
+                type: action.postCodeType
             });
             break;
         }

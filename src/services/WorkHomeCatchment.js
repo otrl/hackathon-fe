@@ -10,7 +10,6 @@ const WorkHomeCatchment = {
                 postCode,
                 type
             });
-            console.log(results);
             return {
                 catchments: resolveAll(results.data.data).as(Record),
                 originPoint: resolve(results.data.originPoint).as(Record)

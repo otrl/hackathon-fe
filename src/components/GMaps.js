@@ -9,9 +9,6 @@ import TransitLayer from './TransitLayer'
 import config from '../config';
 
 const GMaps = (props) => {
-
-    console.log(props.origin);
-
     const heatMapData = props.data.map(datum => {
         return {
             postcode: datum.postcode,
