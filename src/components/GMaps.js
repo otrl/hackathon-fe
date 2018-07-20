@@ -19,16 +19,40 @@ const GMaps = (props) => {
 
     return (
         <GoogleMap
-            defaultZoom={10}
+            defaultZoom={11}
             defaultCenter={{ lat: 51.509865, lng: -0.118092 }}
             layerTypes={['TransitLayer']}
             options={{
                 styles: [
                     {
-                        featureType: "all",
+                        featureType: "road",
                         elementType: "all",
                         stylers: [
                             { saturation: -100 } // <-- THIS
+                        ]
+                    },{
+                        featureType: "transit",
+                        elementType: "all",
+                        stylers: [
+                            { saturation: -50 }
+                        ]
+                    },{
+                        featureType: "landscape",
+                        elementType: "all",
+                        stylers: [
+                            { saturation: -100 }
+                        ]
+                    },{
+                        featureType: "poi",
+                        elementType: "all",
+                        stylers: [
+                            { saturation: -100 }
+                        ]
+                    },{
+                        featureType: "water",
+                        elementType: "all",
+                        stylers: [
+                            { saturation: -80 }
                         ]
                     }
                 ],
